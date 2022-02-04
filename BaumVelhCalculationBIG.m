@@ -22,7 +22,7 @@ for jj = 1:numFiles
     disp('расчёт BaumVelh ');
     disp(jj);
     % Для каждого сигнала достаем свой набор mfcc
-    mfcc = MFCC{jj,1};
+    mfcc = MFCC{1,jj};
     
     % Compute a posteriori log-likelihood
       % Вычислить апостериорную логарифмическую вероятность

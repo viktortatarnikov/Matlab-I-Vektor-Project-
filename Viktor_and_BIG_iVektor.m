@@ -35,6 +35,18 @@ numSpeakers = size(TrainList,1);
 % Получаем параметры UBM
 disp('Получаем параметры UBM');
 [ubm, MFCC] = UBMcalculationBIG(TrainList, numFeatures);
+% получившиеся MFCC имеют большой объём, для отладки разделим их и соберем
+% после сейва (удилить после отладки)  
+
+len = length(MFCC);
+MFCC_dop = MFCC(len/2:len);
+MFCC = MFCC(1:len/2);
+
+%(Работает, можно коментить (есди не закоментил то что выше, то закоменть))
+save ('iVektor_calculation_with_UBM.mat');
+
+% востанавливаем безопбразие совершенное выше
+MFCC = cat(2,MFCC,MFCC_dop);
 
 % Расчет статистик Баума-Уэльха
 disp('Расчет статистик Баума-Уэльха');

@@ -30,7 +30,7 @@ function [ubm, MFCC_list] = UBMcalculationBIG(TrainList, numFeatures)
 %     mfcc = melcepstrum(tmp_frames, Fs, 'M', numFeatures, frameLen);  
 %     MFCC_list{cnt+1,1} = mfcc';
 %    
-%     %Сохраняем на будущее наши мфсс
+%     %Сохраняем на будущее наши мфсс (Иначе они слишком большие чтобы их сохранял матлаб)
 %     %для этогго разделяем их на 4 части (иначе будет слишком большой объем)
 %     if k == floor(g/4)
 %         MFCC_list1 = MFCC_list;
@@ -85,7 +85,10 @@ ubm = struct('ComponentProportion',alpha,'mu',mu,'sigma',vari);
 % запись вышеназванных массивов под одну структуру
 
 % А теперь тренеруем UBM?, используя "алгортм максимизации ожидания"
-maxIter = 10;
+
+maxIter = 1; % почему именно 10???? 
+% для удобства тестирования пока заменим количество иетераций на 1 
+% (вернуть 10 когда всё будет работаеть)
 
 tic
 for iter = 1:maxIter
